@@ -10,11 +10,11 @@ import { LoginButton, AccessToken } from 'react-native-fbsdk-next';
 import { LoginManager } from "react-native-fbsdk-next";
 import { Profile } from "react-native-fbsdk-next";
 import { Settings } from 'react-native-fbsdk-next';
-import {
-    GoogleSignin,
-    GoogleSigninButton,
-    statusCodes,
-} from '@react-native-google-signin/google-signin';
+// import {
+//     GoogleSignin,
+//     GoogleSigninButton,
+//     statusCodes,
+// } from '@react-native-google-signin/google-signin';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -34,7 +34,7 @@ export default class Login extends Component {
     }
 
     componentDidMount() {
-        Settings.initializeSDK();
+        // Settings.initializeSDK();
     }
 
     checkValidate = () => {

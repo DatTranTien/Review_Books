@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "Review",
+    "name": "Review Sách",
     "slug": "Review",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon.jpeg",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/Splash.jpeg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

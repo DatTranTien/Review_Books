@@ -48,54 +48,6 @@ export default class Slide extends React.Component {
       showRealApp: false
     }
   }
-
-  componentDidMount() {
-
- async function User() {
-  const user = await firestore().collection('dataCourse').doc('VhdK3awwW2wTBlcsU2Or').get();
-  // console.log("usser 123============>","------->",user)
-  database()
-  .ref('/account')
-  .once("value")
-  .then(snapshot => {
-    console.log('User data: ', snapshot.val());
-  });
-  // useEffect(() => {
-    // const subscriber = firestore()
-    //   .collection('dataCourse')
-    //   .doc("VhdK3awwW2wTBlcsU2Or")
-    //   .onSnapshot(documentSnapshot => {
-    //     console.log('User data: ==============>', documentSnapshot.data());
-    //   });
-
-    // Stop listening for updates when no longer required
-    // return () => subscriber();
-  // }, [userId]);
-}
-
-    // User()
-    // console.log("user vaof user====>")
-    
-    // reference.on('value', snapshot => {
-    //   console.log('User data: ', snapshot.val());
-    // });
-
-    // let ref = firebase.database().ref("/blog");
-    // ref.on("value", snapshot => {
-    //   const state = snapshot.val();
-    //   this.setState(state);
-    // });
-  //   const reference = firebase
-  // .app()
-  // .database('https://course-c25e7-default-rtdb.firebaseio.com/')
-  // .ref('/course-c25e7-default-rtdb/account');
-
-  // firebase.database().ref(`course-c25e7-default-rtdb/`).on('account', snapshot => {
-  //   let responselist = Object.values(snapshot.val())
-  //   console.log(responselist)
-  //   console.log(snapshot.val())
-    // setLoading(true);
-};
     // var leadsRef = a.ref('account');
     
   // }

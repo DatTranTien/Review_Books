@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Alert, Platform, StyleSheet, Text } from 'react-native';
-import { StackViewStyleInterpolator } from 'react-navigation-stack';
 import {
     Scene,
     Router,
@@ -66,12 +65,11 @@ const Navigation = ({ init }) => {
             <Router>
                 <Stack  >
                     <Scene key="slide" component={Slide} hideNavBar={true} back={true} />
-                    <Scene key="login" component={Login} title="Đăng nhập" back={true} />
+                    {/* <Scene key="login" component={Login} title="Đăng nhập" back={true} />
                     <Scene key="signup" component={SignUp} title="Đăng ký" back={true} />
-                    {/* <Scene key="play" component={PlayVideo} title="Phóng to" back={true} /> */}
                     <Scene key="forget" component={Forget} title="Lấy lại mật khẩu" back={true} />
-                    {/* <Scene key="detailCourse" component={DetailCourse} title="Thông tin khoá học" back={true} /> */}
-                    <Scene key="tabBottom" initial={init == "tabBottom" ? true : false} component={TabBottom} hideNavBar={true} drawer={false} />
+                    <Scene key="tabBottom" initial={init == "tabBottom" ? true : false} component={TabBottom} hideNavBar={true} drawer={false} /> */}
+                   
                     {/* <Scene key="profile" component={Profile} hideNavBar={true} /> */}
                     {/* <Scene key="course" component={Course} hideNavBar={true} /> */}
                     {/* <Scene key="myCourse" component={MyCourse} back={true} renderTitle="" />
