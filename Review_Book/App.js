@@ -42,6 +42,16 @@ function App() {
   //     </Provider>
   //   );
   // }
+  useEffect(() => {
+    const init = async () => {
+      // …do multiple sync or async tasks
+    };
+
+    init().finally(async () => {
+      await RNBootSplash.hide({ fade: true });
+      console.log("Bootsplash has been hidden successfully");
+    });
+  }, []);
 
   return (
     <Provider store={store}>
