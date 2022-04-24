@@ -1249,6 +1249,7 @@ DEPENDENCIES:
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
   - Firebase/Analytics
   - Firebase/Auth
+  - Firebase/Core
   - Firebase/Firestore
   - Flipper (= 0.125.0)
   - Flipper-Boost-iOSX (= 1.76.0.1.11)
@@ -1555,6 +1556,6 @@ SPEC CHECKSUMS:
   Yoga: 17cd9a50243093b547c1e539c749928dd68152da
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 1975cfb3f26cc441fb29e60ec26c1e588a0a9770
+PODFILE CHECKSUM: cdf757349e0ebde7f09ea7bd2c0074005f86ab46
 
 COCOAPODS: 1.11.2
