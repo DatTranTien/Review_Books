@@ -122,6 +122,7 @@ export default class SignUp extends Component {
                                 height: 40,
                                 padding: 5,
                                 marginTop: 10,
+                                color:"gray"
                             }}
                             placeholderTextColor="gray"
                         />
@@ -138,7 +139,8 @@ export default class SignUp extends Component {
                                 height: 40,
                                 padding: 5,
                                 marginTop: 10,
-                                width: "100%"
+                                width: "100%",
+                                color:"gray"
                             }}
                                 onChangeText={(t) => this.setState({ pass: t })}
                                 placeholderTextColor="gray"

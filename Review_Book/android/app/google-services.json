@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "911276968246",
+    "project_id": "review-book-14e56",
+    "storage_bucket": "review-book-14e56.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:911276968246:android:c3115170bae76ed23b8b97",
+        "android_client_info": {
+          "package_name": "com.review_book"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "911276968246-p8pa54vgo1f8l12pe18d0sa7211mk5rb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiNw6BtXEVv53FgpIJbOI_oIOSvQrfFJM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "911276968246-dmdifdasnnoj72vv092dleoifbkcdi3j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "911276968246-cucmeod8f78mjpqke8tattpt17bi7nas.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.Review-Book"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

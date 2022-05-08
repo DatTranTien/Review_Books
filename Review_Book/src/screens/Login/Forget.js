@@ -86,6 +86,7 @@ export default class Forget extends Component {
                             height: 40,
                             padding: 5,
                             marginTop: 10,
+                            color:"gray"
                         }}
                             placeholderTextColor="gray"
                         />

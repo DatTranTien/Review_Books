@@ -30,7 +30,8 @@ export default class Login extends Component {
             showPass: false,
             loading: false,
             email: "",
-            password: ""
+            password: "",
+            userInfo:""
         }
     }
 
@@ -107,7 +108,7 @@ export default class Login extends Component {
             // this.authGoogle()
             await GoogleSignin.hasPlayServices();
             const userInfo = await GoogleSignin.signIn();
-            this.setState({ userInfo });
+            this.setState({ userInfo:userInfo });
             Actions.push("tabBottom")
         } catch (error) {
             if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -203,6 +204,7 @@ export default class Login extends Component {
                             onChangeText={(text) => {
                                 this.setState({ email: text })
                             }}
+                            
                             placeholder="phamd6447@gmail.com" style={{
                                 borderRadius: 10,
                                 borderColor: "gray",
@@ -210,6 +212,7 @@ export default class Login extends Component {
                                 height: 40,
                                 padding: 5,
                                 marginTop: 10,
+                                color:"gray"
                             }}
                             placeholderTextColor="gray"
                         />
@@ -228,7 +231,8 @@ export default class Login extends Component {
                                     height: 40,
                                     padding: 5,
                                     marginTop: 10,
-                                    width: "100%"
+                                    width: "100%",
+                                    color:"gray"
                                     // position:"absolute"
                                 }}
                                 placeholderTextColor="gray"
