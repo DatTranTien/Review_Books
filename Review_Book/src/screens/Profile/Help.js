@@ -10,7 +10,7 @@ export default class Help extends Component {
         super(props)
 
         this.state = {
-            phone: "0961223270"
+            phone: "0397475386"
         }
     }
 
@@ -20,10 +20,10 @@ export default class Help extends Component {
         let phoneNumber = '';
 
         if (Platform.OS === 'android') {
-            phoneNumber = 'tel:0961223270';
+            phoneNumber = 'tel:0397475386';
         }
         else {
-            phoneNumber = 'tel:0961223270';
+            phoneNumber = 'tel:0397475386';
         }
         // Linking.openURL('tel:8777111223')
         Linking.openURL(phoneNumber);
@@ -66,7 +66,7 @@ export default class Help extends Component {
                             fontSize: 18,
                             color: "#999",
                             fontWeight: "500"
-                        }}>0961 223 270</Text>
+                        }}>0397475386</Text>
                         <Image source={require('../../assets/Profile/iconRight.png')} style={{ width: windowWidth * 0.05, height: windowHeight * 0.04 }} />
                     </TouchableOpacity>
                     <TouchableOpacity

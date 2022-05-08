@@ -62,7 +62,10 @@ export default function Search() {
                     value={textInput}
                         onChangeText={(text) => { setTextInput(text) }}
                         placeholder="Tìm kiếm ..."
-                        style={{ borderColor: "#000", borderWidth: 1, padding: 10, width: textInput ? "80%" : "90%", borderRadius: 10 }}
+                        placeholderTextColor={"#1f1f39"}
+                        style={{ borderColor: "#000", borderWidth: 1,
+                         padding: 10, width: textInput ? "80%" : "90%", borderRadius: 10,
+                        color:"#1f1f39" }}
                     />
                     {textInput ?
                         <TouchableOpacity 
@@ -113,7 +116,8 @@ export default function Search() {
                             <Text style={{
                                 color: "#FFF",
                                 fontSize: 16,
-                                fontWeight: "400"
+                                fontWeight: "400",
+                                // color:"#1f1f39"
                             }}>{el}</Text>
                         </TouchableOpacity>
                     ))}
@@ -153,10 +157,10 @@ export default function Search() {
                                 <Image source={{ uri: item.uri }} style={{ width: "30%", height: windowHeight * 0.15 }} />
                                 <View style={{ alignItems: "center", justifyContent: "space-around", width: "55%", marginLeft: 10 }}>
                                     <View style={{width:"90%",alignItems:"center"}}>
-                                        <Text numberOfLines={3} style={{ fontSize: 18, fontWeight: "500" }}>{item.title}</Text>
+                                        <Text numberOfLines={3} style={{ fontSize: 18, fontWeight: "500",color:"#1f1f39" }}>{item.title}</Text>
                                     </View>
                                     <View style={{flexDirection:"row",justifyContent:"center",width:"100%"}}>
-                                    <Text numberOfLines={1} style={{ fontSize: 18, fontWeight: "500" }}>Tác giả: {item.author}</Text>
+                                    <Text numberOfLines={1} style={{ fontSize: 18, fontWeight: "500",color:"#1f1f39" }}>Tác giả: {item.author}</Text>
                                     </View>
                                 </View>
                             </TouchableOpacity>

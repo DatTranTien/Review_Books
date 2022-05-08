@@ -58,7 +58,8 @@ export default class Intro2 extends Component {
                         <Text style={{
                             fontSize: 16,
                             fontWeight: "400",
-                            marginTop: 20
+                            marginTop: 20,
+                            color:"#1F1F39"
                         }}>
                             Đọc mọi lúc mọi nơi
                         </Text>

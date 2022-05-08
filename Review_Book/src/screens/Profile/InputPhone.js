@@ -26,6 +26,7 @@ class InputPhone extends Component {
                             height: 40,
                             padding: 5,
                             marginTop: 10,
+                            color:"#858597"
                         }}
                             placeholderTextColor="gray"
                             keyboardType="phone-pad"

@@ -34,7 +34,7 @@ export default class CardBlog extends Component {
                   }
                 />
                 <View style={{marginTop:15}}> 
-                    <Text numberOfLines={2} style={{fontSize:18,fontWeight:"500"}}>{title}</Text>
+                    <Text numberOfLines={2} style={{fontSize:18,fontWeight:"500",color:"#1f1f39"}}>{title}</Text>
                 </View>
             </TouchableOpacity>
         )

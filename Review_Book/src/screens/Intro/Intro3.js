@@ -44,7 +44,8 @@ export default class Intro3 extends Component {
                     <Text style={{
                         fontSize: 16,
                         fontWeight: "400",
-                        marginTop: 20
+                        marginTop: 20,
+                        color: "#1F1F39"
                     }}>
                         Luôn cập nhật review
                     </Text>
@@ -55,7 +56,8 @@ export default class Intro3 extends Component {
                         <Text style={{
                             fontSize: 16,
                             fontWeight: "400",
-                            marginTop: 5
+                            marginTop: 5,
+                            color: "#1F1F39"
                         }}>
                             mỗi ngày bạn nhé!
                         </Text>

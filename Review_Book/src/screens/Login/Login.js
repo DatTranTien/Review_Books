@@ -40,6 +40,7 @@ export default class Login extends Component {
     }
 
     checkValidate = () => {
+        this.setState({ loading: true })
         // Actions.jump("tabBottom")
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
         if (reg.test(this.state.email) === false) {
@@ -50,6 +51,7 @@ export default class Login extends Component {
                     { text: 'OK' },
                 ],
             )
+            this.setState({ loading: false })
             return false;
         }
         else {
@@ -62,9 +64,8 @@ export default class Login extends Component {
                     Alert.alert(
                         'Đăng nhập thành công!',
                         'Chào mừng bạn! ',
-                        'Chúc bạn học tập tốt!',
+                        
                     )
-                    this.setState({ loading: true })
                     setTimeout(() => {
                         Actions.jump("tabBottom")
                         this.setState({ loading: false })
@@ -103,6 +104,7 @@ export default class Login extends Component {
 
 
     signIn = async () => {
+        
         try {
             this.googleSignIn()
             // this.authGoogle()
@@ -110,7 +112,9 @@ export default class Login extends Component {
             const userInfo = await GoogleSignin.signIn();
             this.setState({ userInfo:userInfo });
             Actions.push("tabBottom")
+            this.setState({loading:false})
         } catch (error) {
+            this.setState({loading:false})
             if (error.code === statusCodes.SIGN_IN_CANCELLED) {
                 // user cancelled the login flow
             } else if (error.code === statusCodes.IN_PROGRESS) {
@@ -194,7 +198,11 @@ export default class Login extends Component {
                 alignItems: "center",
                 paddingTop: windowHeight * 0.1,
             }}>
-                {this.state.loading ? < ActivityIndicator size="small" color="#0000ff" /> : null}
+                {this.state.loading ? (
+                <View style={styles.loading}>
+                < ActivityIndicator size="small" color="#0000ff" />
+                </View>
+                ): null}
                 <View style={{
                     width: "90%"
                 }}>
@@ -316,7 +324,9 @@ export default class Login extends Component {
                             }}>
 
                                 <TouchableOpacity
-                                    onPress={() => this.signIn()}
+                                    onPress={async() => {
+                                       await this.setState({loading:true})
+                                        this.signIn()}}
                                 >
                                     <Image source={require('../../assets/Login/google.png')} style={{ width: 40, height: 40 }} />
                                 </TouchableOpacity>
@@ -334,4 +344,14 @@ export default class Login extends Component {
     }
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    loading: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        alignItems: 'center',
+        justifyContent: 'center'
+      }
+})
