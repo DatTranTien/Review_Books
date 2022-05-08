@@ -30,7 +30,7 @@ export default class MyGroup extends Component {
                     }}>
                         <TouchableOpacity
                          onPress={() => {
-                            Linking.openURL("https://www.tidathongthai.com/")
+                            Linking.openURL("https://www.reader.com.vn/")
                          }}
                         >
                             <View style={{
@@ -64,6 +64,8 @@ export default class MyGroup extends Component {
                         </TouchableOpacity>
 
                     </View>
+
+
                     <View style={{
                         backgroundColor: "#F2F2F2",
                         width: windowWidth * 0.9,
@@ -76,7 +78,7 @@ export default class MyGroup extends Component {
                     }}>
                         <TouchableOpacity
                         onPress={() => {
-                            Linking.openURL("https://www.facebook.com/Elearn-105447582122680")
+                            Linking.openURL("https://www.facebook.com/khonggiansachcuhanoi/")
                          }}
                         >
                             <View style={{
@@ -94,7 +96,7 @@ export default class MyGroup extends Component {
                                             fontSize: 20,
                                             color: "#1f1f39",
                                         }}
-                                    >Facebook</Text>
+                                    >Hội chợ sách cũ Hà Nội</Text>
                                 </View>
                             </View>
                             <View>
@@ -103,10 +105,10 @@ export default class MyGroup extends Component {
                                     color: "#2f1f39",
                                     marginTop: 5,
                                 }}>
-                                    Tham gia cộng đồng để cùng trao đổi kiến thức, gặp gỡ giao lưu, và nhận những bài học miễn phí,...
+Không gian sách cũ Hà Nội thỏa mãn đam mê sách cũ của những độc giả muốn tìm lại một chút hoài niệm, hoặc kiếm tìm những đầu sách cũ/ có giá trị.
                                 </Text>
                             </View>
-                                <Image source={require('../../../assets/Community/imgFacePage.png')} style={{ width: windowWidth*0.8, height: windowHeight * 0.25, marginTop:10,borderRadius:10 }} />
+                                <Image source={require('../../../assets/Community/hoichosachcu.png')} style={{ width: windowWidth*0.8, height: windowHeight * 0.25, marginTop:10,borderRadius:10 }} />
                         </TouchableOpacity>
 
                     </View>
@@ -122,7 +124,54 @@ export default class MyGroup extends Component {
                     }}>
                         <TouchableOpacity
                         onPress={() => {
-                            Linking.openURL("https://www.youtube.com/channel/UCJo1JEdFMZT_H0-VHLul2kQ")
+                            Linking.openURL("https://www.facebook.com/bila.docdetruongthanh")
+                         }}
+                        >
+                            <View style={{
+                                flexDirection: "row"
+                            }}>
+                                <Image source={require('../../../assets/Community/GroupFace.png')} style={{ width: windowWidth * 0.2, height: windowHeight * 0.1 }} />
+                                <View style={{
+                                    justifyContent: "center",
+                                    marginLeft: 20,
+                                    height: windowHeight * 0.1
+                                }}>
+                                    <Text
+                                        style={{
+                                            fontWeight: "700",
+                                            fontSize: 20,
+                                            color: "#1f1f39",
+                                        }}
+                                    >Billa - Đọc để trưởng thành</Text>
+                                </View>
+                            </View>
+                            <View>
+                                <Text style={{
+                                    fontSize: 16,
+                                    color: "#2f1f39",
+                                    marginTop: 5,
+                                }}>
+BILA – Đọc để trưởng thành ra đời với sứ mệnh cùng bạn đọc sách, khám phá thế giới thú vị qua trang sách và áp dụng những điều hay đã đọc vào cuộc sống.                                </Text>
+                            </View>
+                                <Image source={require('../../../assets/Community/bila.jpeg')} style={{ width: windowWidth*0.8, height: windowHeight * 0.25, marginTop:10,borderRadius:10 }} />
+                        </TouchableOpacity>
+
+                    </View>
+
+
+                    <View style={{
+                        backgroundColor: "#F2F2F2",
+                        width: windowWidth * 0.9,
+                        // height: windowHeight * 0.25,
+                        borderRadius: 20,
+                        // justifyContent:"center",
+                        padding: 20,
+                        marginTop: 20
+                        // alignItems:"center"
+                    }}>
+                        <TouchableOpacity
+                        onPress={() => {
+                            Linking.openURL("https://www.youtube.com/channel/UCqewf8j6mYE5TsVMlnlFGXw/featured")
                          }}
                         >
                             <View style={{
@@ -152,11 +201,11 @@ export default class MyGroup extends Component {
                                     Tham gia cộng đồng để cùng trao đổi kiến thức, gặp gỡ giao lưu, và nhận những bài học miễn phí,...
                                 </Text>
                             </View>
-                                <Image source={require('../../../assets/Community/imgYoutubePage.png')} style={{ width: windowWidth*0.8, height: windowHeight * 0.25, marginTop:10,borderRadius:10 }} />
+                                <Image source={require('../../../assets/Community/youtubeSach.jpeg')} style={{ width: windowWidth*0.8, height: windowHeight * 0.25, marginTop:10,borderRadius:10 }} />
                         </TouchableOpacity>
 
                     </View>
-                    <View style={{
+                    {/* <View style={{
                         backgroundColor: "#F2F2F2",
                         width: windowWidth * 0.9,
                         // height: windowHeight * 0.25,
@@ -201,7 +250,7 @@ export default class MyGroup extends Component {
                                 <Image source={require('../../../assets/Community/imgTiktokPage.png')} style={{ width: windowWidth*0.8, height: windowHeight * 0.25, marginTop:10,borderRadius:10 }} />
                         </TouchableOpacity>
 
-                    </View>
+                    </View> */}
 
                     
                 </View>

@@ -192,13 +192,7 @@ componentDidMount(){
                         }}>Đánh giá app</Text>
                         <Image source={require('../../assets/Profile/iconRight.png')} style={{ width: windowWidth * 0.05, height: windowHeight * 0.04 }} />
                     </TouchableOpacity> */}
-                    <View style={{
-                        borderColor: "#999",
-                        borderWidth: 1,
-                        width: windowWidth * 0.9,
-                        opacity: 0.2,
-                        marginTop: 10
-                    }} />
+                  
                 </View>
             </ScrollView >
         )

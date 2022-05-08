@@ -3,6 +3,10 @@ import { Text, StyleSheet, View, Image } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../Home/Home';
 import { NavigationContainer } from '@react-navigation/native';
+import Profile from '../Profile/Profile';
+import Search from '../search/Search';
+import Community from '../Community/Community';
+import TabCommunity from '../Community/TabCommunity';
 const Tab = createBottomTabNavigator();
 
 export default class TabBottom extends Component { 
@@ -23,12 +27,14 @@ export default class TabBottom extends Component {
                         activeTintColor: '#ff5400',
                         inactiveTintColor: '#666',
                         
+                        
                     }}
                     screenOptions={{
                         tabBarStyle: { height: "10%" },
                         tabBarLabelStyle:{
                             marginBottom:5,
-                            fontSize:14
+                            fontSize:15,
+                            fontWeight:"700"
                         },
                         headerShown:false
                     }}>
@@ -37,7 +43,7 @@ export default class TabBottom extends Component {
                             tabBarIcon: ({ color }) => (
                                 <Image
                                     source={require("../../assets/common/home.png")}
-                                    style={[styles.icon, {  tintColor:color}]}
+                                    // style={[styles.icon, {  tintColor:color}]}
                                 />
                             ),
                         }}
@@ -46,32 +52,32 @@ export default class TabBottom extends Component {
                         options={{
                             tabBarIcon: ({ color }) => (
                                 <Image
-                                    source={require("../../assets/common/course.png")}
-                                    style={[styles.icon, { tintColor: color}]}
+                                    source={require("../../assets/common/iconSearch.png")}
+                                    // style={[styles.icon, { tintColor: color}]}
                                 />
                             ),
                         }}
-                        name="Khoá học" component={Home} />
+                        name="Tìm kiếm" component={Search} />
                     <Tab.Screen
                         options={{
                             tabBarIcon: ({ color }) => (
                                 <Image
                                     source={require("../../assets/common/people.png")}
-                                    style={[styles.icon, { tintColor: color }]}
+                                    // style={[styles.icon, { tintColor: color }]}
                                 />
                             ),
                         }}
-                        name="Cộng đồng" component={Home} />
+                        name="Cộng đồng" component={Community} />
                     <Tab.Screen
                         options={{
                             tabBarIcon: ({ color }) => (
                                 <Image
-                                    source={require("../../assets/common/user.png")}
-                                    style={[styles.icon, { tintColor: color }]}
+                                    source={require("../../assets/common/i.png")}
+                                    // style={[styles.icon, { tintColor: color }]}
                                 />
                             ),
                         }}
-                        name="Tôi" component={Home} />
+                        name="Hồ sơ" component={Profile} />
                 </Tab.Navigator>
             </NavigationContainer>
         )

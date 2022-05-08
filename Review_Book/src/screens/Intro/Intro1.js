@@ -53,7 +53,7 @@ export class Intro1 extends Component {
                                 color: "#1F1F39"
                             }
                         }>
-                            Học tiện lợi, mọi lúc mọi nơi
+                            Đa dạng chủ đề, đa dạng thể loại
                         </Text>
                     </View>
                 </View>

@@ -19,6 +19,11 @@ import Login from '../Login/Login';
 import SignUp from '../Login/SignUp';
 import Forget from '../Login/Forget';
 import TabBottom from './TabBottom';
+import BlogReader from '../Community/Notifications/BlogReader';
+import Profile from '../Profile/Profile';
+import InputPhone from '../Profile/InputPhone';
+import OTPPass from '../Profile/OTPPass';
+import Help from '../Profile/Help';
 
 
 const styles = StyleSheet.create({
@@ -52,6 +57,12 @@ const Navigation = ({ init }) => {
                     <Scene key="signup" component={SignUp} title="Đăng ký" back={true} />
                     <Scene key="forget" component={Forget} title="Lấy lại mật khẩu" back={true} />
                     <Scene key="tabBottom" initial={init == "tabBottom" ? true : false} component={TabBottom} hideNavBar={true} drawer={false} />
+                    <Scene key="blogReader" title={"Bài Review"} component={BlogReader} hideNavBar={false} back={true}/>
+                    <Scene key="profile" component={Profile} hideNavBar={true} />
+                    {/* <Scene key="editProfile" component={} back={true} /> */}
+                    <Scene key="otpPass" component={OTPPass} back={true} title="Nhập OTP"/>
+                    <Scene key="inputPhone" component={InputPhone} back={true} title="Nhập Số Điện Thoại"/>
+                    <Scene key="help" component={Help} back={true} title="Trợ giúp" />
                     {/* <Scene key="profile" component={Profile} hideNavBar={true} />
                     <Scene key="course" component={Course} hideNavBar={true} />
                     <Scene key="myCourse" component={MyCourse} back={true} renderTitle="" />

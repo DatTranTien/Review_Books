@@ -43,8 +43,6 @@ export default class Slide extends React.Component {
     );
   }
   _onDone = () => {
-    // User finished the introduction. Show real app through
-    // navigation or simply by controlling state
     this.setState({ showRealApp: true });
   }
   _renderDoneButton = () => {

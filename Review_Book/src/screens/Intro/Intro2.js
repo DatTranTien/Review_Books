@@ -53,14 +53,14 @@ export default class Intro2 extends Component {
                                 color: "#1F1F39"
                             }
                         }>
-                            Nâng cấp bản thân ngay hôm nay!
+                            Nhiều tính năng tiện lợi!
                         </Text>
                         <Text style={{
                             fontSize: 16,
                             fontWeight: "400",
                             marginTop: 20
                         }}>
-                            Tính ứng dụng cao trong thực tiễn
+                            Đọc mọi lúc mọi nơi
                         </Text>
                     </View>
                 </View>

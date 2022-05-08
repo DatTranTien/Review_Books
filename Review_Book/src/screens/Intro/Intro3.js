@@ -27,7 +27,7 @@ export default class Intro3 extends Component {
                             color: "#1F1F39"
                         }
                     }>
-                        Nâng cấp bản thân
+                        Xem và trải nghiệm
                     </Text>
                     <View style={{
                         justifyContent: "center",
@@ -46,7 +46,7 @@ export default class Intro3 extends Component {
                         fontWeight: "400",
                         marginTop: 20
                     }}>
-                        Hãy bắt đầu bằng việc học 5 phút
+                        Luôn cập nhật review
                     </Text>
                     <View style={{
                         justifyContent: "center",
