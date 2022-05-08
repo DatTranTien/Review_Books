@@ -6,6 +6,8 @@ import configureStore from './src/screens/Redux/Store';
 import RNBootSplash from "react-native-bootsplash";
 import auth from '@react-native-firebase/auth';
 import 'react-native-gesture-handler'
+import SplashScreen from 'react-native-splash-screen'
+import { Platform, StyleSheet, Text, ScrollView } from 'react-native';
 
 function App() {
   const store = configureStore()
@@ -16,45 +18,45 @@ function App() {
     setUser(user);
     if (initializing) setInitializing(false);
   }
+  useEffect(() => {
+   if (Platform.OS == "android") {
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 500);
+   }
+  }, [])
+  
 
   useEffect(async() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    
+      const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+      if (Platform.OS == "ios" || Platform.OS == "macos") {
     setTimeout(async() => {
       await RNBootSplash.hide({ fade: true });
-    }, 1000);
-    return subscriber; // unsubscribe on unmount
+    }, 800);
+  }
+    return subscriber;
+    // } // unsubscribe on unmount
   }, []);
 
-  if (initializing) return null;
+if (Platform.OS!=="android") {
+  if (initializing ) return null;
+}
 
-  // useEffect(() => {
-  //   const init = async () => {
-  //     // …do multiple sync or async tasks
-  //   };
-
-  //   init().finally(async () => {
-  //     await RNBootSplash.hide({ fade: true });
-  //     console.log("Bootsplash has been hidden successfully");
-  //   });
-  // }, []);
 
   if (!user) {
-    console.log( "vao 1---->")
     return (
       <Provider store={store}>
         <Navigation init="slide" />
-        {/* <Navigation init="tabBottom" /> */}
       </Provider>
     );
-  }
-  // else{
-  //   console.log( "vao 2---->")
+  }else{
     return (
       <Provider store={store}>
       <Navigation init="tabBottom"/>
       </Provider>
     );
-
+    }
   
 }
 export default App

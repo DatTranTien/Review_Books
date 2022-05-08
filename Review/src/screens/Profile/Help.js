@@ -73,7 +73,7 @@ export default class Help extends Component {
                         onPress={() => {
                             const subject = "Phản hồi về app ";
                             const message = "Thân gửi admin,...";
-                            Linking.openURL(`mailto:trantiendatbk@gmail.com?subject=${subject}&body=${message}`)
+                            Linking.openURL(`mailto:phamd6447@gmail.com?subject=${subject}&body=${message}`)
                         }}
                         style={{
                             flexDirection: "row",
@@ -89,7 +89,7 @@ export default class Help extends Component {
                             fontSize: 18,
                             color: "#999",
                             fontWeight: "500"
-                        }}>trantiendatbk@gmail.com</Text>
+                        }}>phamd6447@gmail.com</Text>
                         <Image source={require('../../assets/Profile/iconRight.png')} style={{ width: windowWidth * 0.05, height: windowHeight * 0.04 }} />
                     </TouchableOpacity>
                     {/* <View style={{

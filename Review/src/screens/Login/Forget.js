@@ -79,7 +79,7 @@ export default class Forget extends Component {
                         onChangeText={(text)=>{
                             this.setState({email:text})
                         }}
-                        placeholder="trantiendatbk@gmail.com" style={{
+                        placeholder="phamd6447@gmail.com" style={{
                             borderRadius: 10,
                             borderColor: "gray",
                             borderWidth: 1,

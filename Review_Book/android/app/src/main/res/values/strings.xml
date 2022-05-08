@@ -1,4 +1,6 @@
 <resources>
-    <string name="app_name">Review_Book</string>
-    <string name="facebook_app_id">APP_ID</string>
+    <string name="app_name">Review Sách</string>
+    <string name="facebook_app_id">728715271795593</string><string name="facebook_client_token">6b1a77dd228f532fc3c50e7b4662bab4</string>
+
 </resources>
+ 
