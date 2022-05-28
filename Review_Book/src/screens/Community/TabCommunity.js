@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import MyGroup from './Group/MyGroup';
 import Notice from './Notifications/Notice';
 import Recruitment from './Recruitment';
+import ShowAllTopic from './Notifications/ShowAllTopic';
 const Tab = createMaterialTopTabNavigator();
 
 
@@ -19,7 +20,7 @@ export default function TabCommunity() {
               }}>
                 <Tab.Screen name="Nhóm" component={MyGroup}  />
                 {/*chuyển notice thành blog */}
-                <Tab.Screen name="Bài Blog" component={Notice} />
+                <Tab.Screen name="Bài Blog" component={ShowAllTopic} />
                 <Tab.Screen name="Tuyển Dụng" component={Recruitment} />
             </Tab.Navigator>
         </NavigationContainer>

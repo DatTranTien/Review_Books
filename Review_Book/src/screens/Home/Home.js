@@ -1,8 +1,7 @@
-// import { firebase } from '@react-native-firebase/firestore';
-import { firebase } from '@react-native-firebase/auth';
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, Image, Dimensions, ImageBackground, FlatList, ScrollView, TouchableOpacity, Alert } from 'react-native'
+import { Text, StyleSheet, View, Image, Dimensions, ImageBackground, FlatList, ScrollView, TouchableOpacity, Alert, Linking } from 'react-native'
 import { Actions } from 'react-native-router-flux';
+import auth, { firebase } from '@react-native-firebase/auth';
 import {
     GoogleSignin,
     GoogleSigninButton,
@@ -10,6 +9,8 @@ import {
 } from '@react-native-google-signin/google-signin';
 import CardBlog from '../Community/Notifications/CardBlog';
 import ActivityIndicator from '../../component/ActivityIndicator';
+import dataSample from '../Api/fakeData';
+import database from '@react-native-firebase/database';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -30,76 +31,43 @@ export default class Home extends Component {
 
         this.state = {
             userInfo: "",
+            userInfoEmail:{},
+            LogGG: false,
             obj: {},
             loading: false,
-            dataBlog: [],
-            dataSearchCourse: [],
-            dataBlogDetal: [
-                {
-                    title: "Sống như ngày mai sẽ chết",
-                    uri: "https://www.reader.com.vn/uploads/images/review-sach-song-nhu-ngay-mai-se-chet.jpeg",
-                    url: "https://www.reader.com.vn/review-sach-song-nhu-ngay-mai-se-chet-a650.html",
-                    id: 0
-                },
-                {
-                    title: "Để tâm không bận",
-                    uri: "https://www.reader.com.vn/uploads/images/sach-de-tam-khong-ban-1.jpeg",
-                    url: "https://www.reader.com.vn/review-sach-de-tam-khong-ban-ryunosuke-koike-a647.html",
-                    id: 1
-                }
-            ]
+            dataListHome: [],
+            dataSearchCourse: []
         }
     }
+    componentDidMount() {
+        this.getCurrentUserInfo()
+        database()
+            .ref('/listHome')
+            .once("value")
+            .then(snapshot => {
+                this.setState({dataListHome:snapshot.val()})
+            })
 
-    // showAll=()=>{
-
-    // }
-    // componentDidMount() {
-    //     database()
-    //         .ref('/blog')
-    //         .once("value")
-    //         .then(snapshot => {
-    //             console.log('User data blog------>: ', snapshot.val());
-    //             this.setState({dataBlog:snapshot.val().topic})
-    //             this.setState({dataBlogDetal:this.state.dataBlog[0].detail})
-    //             console.log(this.state.dataBlog[0].detail,"de tail nef---->")
-    //         })
-    //         .then(()=>{
-    //             database()
-    //         .ref('/searchCourse')
-    //         .once("value")
-    //         .then(snapshot => {
-    //             console.log('User data searchCourse------>: ', snapshot.val());
-    //             this.setState({dataSearchCourse:snapshot.val().course})
-    //         });
-    //         });
-
-    // }
+    }
 
 
     getCurrentUserInfo = async () => {
         try {
-            //   const userInfo = await GoogleSignin.signInSilently();
-            //   this.setState({ userInfo:userInfo });
-
             const currentUser = await GoogleSignin.getCurrentUser();
-            // this.setState({ currentUser });
-            this.setState({ userInfo: currentUser });
-            console.log("userInfo======>", this.state.userInfo.user.email)
-        } catch (error) {
-            if (error.code === statusCodes.SIGN_IN_REQUIRED) {
-                // user has not signed in yet
-                Alert.alert("erro1")
-            } else {
-                Alert.alert("erro2")
+            if (currentUser != null) {
+                this.setState({ userInfo: currentUser, LogGG: true });
             }
+            else {
+                const user = firebase.auth().currentUser;
+                user.providerData.forEach((userInfo) => {
+                    this.setState({
+                        userInfoEmail: userInfo
+                    })
+                });
+            }
+        } catch (error) {
         }
     };
-
-    // getCurrentUserInfo = async () => {
-    //     const currentUser = await GoogleSignin.getCurrentUser();
-    //     this.setState({ currentUser });
-    //   };
 
 
     render() {
@@ -134,9 +102,9 @@ export default class Home extends Component {
                             justifyContent: "space-between",
                             alignItems: "center"
                         }} >
-                            <View>
-                                <Text style={{ color: "#328d99", fontSize: 24, fontWeight: "600" }}>Hi, My friend!</Text>
-                                <Text style={{ color: "#328d99", fontSize: 20, fontWeight: "500", }}>Bắt đầu xem</Text>
+                            <View style={{width:"90%"}}>
+                                <Text numberOfLines={1} style={{ color: "#328d99", fontSize: 22, fontWeight: "600" }}>Hi, {this.state.LogGG ? this.state.userInfo.user.email : this.state.userInfoEmail.email}</Text>
+                                <Text style={{ color: "#328d99", fontSize: 18, fontWeight: "500", }}>Bắt đầu xem</Text>
                             </View>
                             <View style={{backgroundColor: "#fff",padding:15,borderRadius:15}}>
                                 <TouchableOpacity onPress={() => this.props.navigation.navigate("Hồ sơ")}>
@@ -148,335 +116,50 @@ export default class Home extends Component {
                         </View>
                     </View>
 
-
-                    <View style={{
-                        marginTop: windowHeight * 0.06,
-                        alignItems: "center"
-                    }}>
-
+                    {this.state.dataListHome.map((item,index)=>(
                         <View style={{
-                            flexDirection: "row",
-                            justifyContent: "space-between",
-                            width: "90%"
+                            marginTop: windowHeight * 0.06,
+                            alignItems: "center"
                         }}>
-                            <Text style={{
-                                fontWeight: "500",
-                                fontSize: 18,
-                                color: "#1f1f39"
-                            }}>BÁN CHẠY NHẤT</Text>
-                            <TouchableOpacity
-                                onPress={() => { }}>
+    
+                            <View style={{
+                                flexDirection: "row",
+                                justifyContent: "space-between",
+                                width: "90%"
+                            }}>
                                 <Text style={{
                                     fontWeight: "500",
                                     fontSize: 18,
-                                    color: "#3d5cff",
-                                    // textDecorationLine: "underline"
-                                }}>Xem tất cả</Text>
-                            </TouchableOpacity>
+                                    color: "#1f1f39"
+                                }}>{item.topic}</Text>
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        Actions.blogReader({uri:item.urlAll,title:item.topic})
+                                     }}>
+                                    <Text style={{
+                                        fontWeight: "500",
+                                        fontSize: 18,
+                                        color: "#3d5cff",
+                                        // textDecorationLine: "underline"
+                                    }}>Xem tất cả</Text>
+                                </TouchableOpacity>
+                            </View>
+    
+                            <ScrollView>
+                                <FlatList
+                                    style={{ marginTop: 25 }}
+                                    horizontal
+                                    showsHorizontalScrollIndicator={false}
+                                    data={item.readings}
+                                    renderItem={({ item }) => (
+                                        <CardBlog title={item.title} uri={item.uri} url={item.url} />
+                                    )}
+                                    keyExtractor={item => item.id.toString()}
+                                />
+                            </ScrollView>
                         </View>
-
-                        <ScrollView>
-                            <FlatList
-                                style={{ marginTop: 25 }}
-                                horizontal
-                                showsHorizontalScrollIndicator={false}
-                                data={this.state.dataBlogDetal}
-                                renderItem={({ item }) => (
-                                    <CardBlog title={item.title} uri={item.uri} url={item.url} />
-                                )}
-                                keyExtractor={item => item.id.toString()}
-                            />
-                        </ScrollView>
-                    </View>
-
-
-                    <View style={{
-                        marginTop: windowHeight * 0.06,
-                        alignItems: "center"
-                    }}>
-
-                        <View style={{
-                            flexDirection: "row",
-                            justifyContent: "space-between",
-                            width: "90%"
-                        }}>
-                            <Text style={{
-                                fontWeight: "500",
-                                fontSize: 18,
-                                color: "#1f1f39"
-                            }}>VĂN HỌC - TIỂU THUYẾT</Text>
-                            <TouchableOpacity
-                                onPress={() => { }}>
-                                <Text style={{
-                                    fontWeight: "500",
-                                    fontSize: 18,
-                                    color: "#3d5cff",
-                                    // textDecorationLine: "underline"
-                                }}>Xem tất cả</Text>
-                            </TouchableOpacity>
-                        </View>
-
-                        <ScrollView>
-                            <FlatList
-                                style={{ marginTop: 25 }}
-                                horizontal
-                                showsHorizontalScrollIndicator={false}
-                                data={this.state.dataBlogDetal}
-                                renderItem={({ item }) => (
-                                    <CardBlog title={item.title} uri={item.uri} url={item.url} />
-                                )}
-                                keyExtractor={item => item.id.toString()}
-                            />
-                        </ScrollView>
-                    </View>
-
-
-                    <View style={{
-                        marginTop: windowHeight * 0.06,
-                        alignItems: "center"
-                    }}>
-
-                        <View style={{
-                            flexDirection: "row",
-                            justifyContent: "space-between",
-                            width: "90%"
-                        }}>
-                            <Text style={{
-                                fontWeight: "500",
-                                fontSize: 18,
-                                color: "#1f1f39"
-                            }}>KINH DOANH - ĐẦU TƯ</Text>
-                            <TouchableOpacity
-                                onPress={() => { }}>
-                                <Text style={{
-                                    fontWeight: "500",
-                                    fontSize: 18,
-                                    color: "#3d5cff",
-                                    // textDecorationLine: "underline"
-                                }}>Xem tất cả</Text>
-                            </TouchableOpacity>
-                        </View>
-
-                        <ScrollView>
-                            <FlatList
-                                style={{ marginTop: 25 }}
-                                horizontal
-                                showsHorizontalScrollIndicator={false}
-                                data={this.state.dataBlogDetal}
-                                renderItem={({ item }) => (
-                                    <CardBlog title={item.title} uri={item.uri} url={item.url} />
-                                )}
-                                keyExtractor={item => item.id.toString()}
-                            />
-                        </ScrollView>
-                    </View>
-
-
-                    <View style={{
-                        marginTop: windowHeight * 0.06,
-                        alignItems: "center"
-                    }}>
-
-                        <View style={{
-                            flexDirection: "row",
-                            justifyContent: "space-between",
-                            width: "90%"
-                        }}>
-                            <Text style={{
-                                fontWeight: "500",
-                                fontSize: 18,
-                                color: "#1f1f39"
-                            }}>PHÁT TRIỂN BẢN THÂN</Text>
-                            <TouchableOpacity
-                                onPress={() => { }}>
-                                <Text style={{
-                                    fontWeight: "500",
-                                    fontSize: 18,
-                                    color: "#3d5cff",
-                                    // textDecorationLine: "underline"
-                                }}>Xem tất cả</Text>
-                            </TouchableOpacity>
-                        </View>
-
-                        <ScrollView>
-                            <FlatList
-                                style={{ marginTop: 25 }}
-                                horizontal
-                                showsHorizontalScrollIndicator={false}
-                                data={this.state.dataBlogDetal}
-                                renderItem={({ item }) => (
-                                    <CardBlog title={item.title} uri={item.uri} url={item.url} />
-                                )}
-                                keyExtractor={item => item.id.toString()}
-                            />
-                        </ScrollView>
-                    </View>
-
-
-                    <View style={{
-                        marginTop: windowHeight * 0.06,
-                        alignItems: "center"
-                    }}>
-
-                        <View style={{
-                            flexDirection: "row",
-                            justifyContent: "space-between",
-                            width: "90%"
-                        }}>
-                            <Text style={{
-                                fontWeight: "500",
-                                fontSize: 18,
-                                color: "#1f1f39"
-                            }}>MARKETING - BÁN HÀNG</Text>
-                            <TouchableOpacity
-                                onPress={() => { }}>
-                                <Text style={{
-                                    fontWeight: "500",
-                                    fontSize: 18,
-                                    color: "#3d5cff",
-                                    // textDecorationLine: "underline"
-                                }}>Xem tất cả</Text>
-                            </TouchableOpacity>
-                        </View>
-
-                        <ScrollView>
-                            <FlatList
-                                style={{ marginTop: 25 }}
-                                horizontal
-                                showsHorizontalScrollIndicator={false}
-                                data={this.state.dataBlogDetal}
-                                renderItem={({ item }) => (
-                                    <CardBlog title={item.title} uri={item.uri} url={item.url} />
-                                )}
-                                keyExtractor={item => item.id.toString()}
-                            />
-                        </ScrollView>
-                    </View>
-
-
-                    <View style={{
-                        marginTop: windowHeight * 0.06,
-                        alignItems: "center"
-                    }}>
-
-                        <View style={{
-                            flexDirection: "row",
-                            justifyContent: "space-between",
-                            width: "90%"
-                        }}>
-                            <Text style={{
-                                fontWeight: "500",
-                                fontSize: 18,
-                                color: "#1f1f39"
-                            }}>KHỞI NGHIỆP</Text>
-                            <TouchableOpacity
-                                onPress={() => { }}>
-                                <Text style={{
-                                    fontWeight: "500",
-                                    fontSize: 18,
-                                    color: "#3d5cff",
-                                    // textDecorationLine: "underline"
-                                }}>Xem tất cả</Text>
-                            </TouchableOpacity>
-                        </View>
-
-                        <ScrollView>
-                            <FlatList
-                                style={{ marginTop: 25 }}
-                                horizontal
-                                showsHorizontalScrollIndicator={false}
-                                data={this.state.dataBlogDetal}
-                                renderItem={({ item }) => (
-                                    <CardBlog title={item.title} uri={item.uri} url={item.url} />
-                                )}
-                                keyExtractor={item => item.id.toString()}
-                            />
-                        </ScrollView>
-                    </View>
-
-
-                    <View style={{
-                        marginTop: windowHeight * 0.06,
-                        alignItems: "center"
-                    }}>
-
-                        <View style={{
-                            flexDirection: "row",
-                            justifyContent: "space-between",
-                            width: "90%"
-                        }}>
-                            <Text style={{
-                                fontWeight: "500",
-                                fontSize: 18,
-                                color: "#1f1f39"
-                            }}>QUÀ TẶNG CUỘC SỐNG</Text>
-                            <TouchableOpacity
-                                onPress={() => { }}>
-                                <Text style={{
-                                    fontWeight: "500",
-                                    fontSize: 18,
-                                    color: "#3d5cff",
-                                    // textDecorationLine: "underline"
-                                }}>Xem tất cả</Text>
-                            </TouchableOpacity>
-                        </View>
-
-                        <ScrollView>
-                            <FlatList
-                                style={{ marginTop: 25 }}
-                                horizontal
-                                showsHorizontalScrollIndicator={false}
-                                data={this.state.dataBlogDetal}
-                                renderItem={({ item }) => (
-                                    <CardBlog title={item.title} uri={item.uri} url={item.url} />
-                                )}
-                                keyExtractor={item => item.id.toString()}
-                            />
-                        </ScrollView>
-                    </View>
-
-
-                    <View style={{
-                        marginTop: windowHeight * 0.06,
-                        alignItems: "center"
-                    }}>
-
-                        <View style={{
-                            flexDirection: "row",
-                            justifyContent: "space-between",
-                            width: "90%"
-                        }}>
-                            <Text style={{
-                                fontWeight: "500",
-                                fontSize: 18,
-                                color: "#1f1f39"
-                            }}>GÓC SUY NGẪM</Text>
-                            <TouchableOpacity
-                                onPress={() => { }}>
-                                <Text style={{
-                                    fontWeight: "500",
-                                    fontSize: 18,
-                                    color: "#3d5cff",
-                                    // textDecorationLine: "underline"
-                                }}>Xem tất cả</Text>
-                            </TouchableOpacity>
-                        </View>
-
-                        <ScrollView>
-                            <FlatList
-                                style={{ marginTop: 25 }}
-                                horizontal
-                                showsHorizontalScrollIndicator={false}
-                                data={this.state.dataBlogDetal}
-                                renderItem={({ item }) => (
-                                    <CardBlog title={item.title} uri={item.uri} url={item.url} />
-                                )}
-                                keyExtractor={item => item.id.toString()}
-                            />
-                        </ScrollView>
-                    </View>
-
-
+                    ))
+                }
 
                 </ScrollView>
         )

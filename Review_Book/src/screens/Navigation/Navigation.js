@@ -24,6 +24,7 @@ import Profile from '../Profile/Profile';
 import InputPhone from '../Profile/InputPhone';
 import OTPPass from '../Profile/OTPPass';
 import Help from '../Profile/Help';
+import ShowAllTopic from '../Community/Notifications/ShowAllTopic';
 
 
 const styles = StyleSheet.create({
@@ -63,6 +64,7 @@ const Navigation = ({ init }) => {
                     <Scene key="otpPass" component={OTPPass} back={true} title="Nhập OTP"/>
                     <Scene key="inputPhone" component={InputPhone} back={true} title="Nhập Số Điện Thoại"/>
                     <Scene key="help" component={Help} back={true} title="Trợ giúp" />
+                    {/* <Scene key="showAllTopic" component={ShowAllTopic}  back={true} /> */}
                     {/* <Scene key="profile" component={Profile} hideNavBar={true} />
                     <Scene key="course" component={Course} hideNavBar={true} />
                     <Scene key="myCourse" component={MyCourse} back={true} renderTitle="" />

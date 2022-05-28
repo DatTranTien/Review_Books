@@ -23,7 +23,6 @@ target 'Review_Book' do
     inherit! :complete
     # Pods for testing
     pod 'Firebase/Core'
-    pod 'Firebase/Analytics'
     pod 'Firebase/Auth'
     pod 'Firebase/Firestore'
     pod 'GoogleSignIn', '~> 6.1.0'

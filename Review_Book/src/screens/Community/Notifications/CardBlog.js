@@ -20,7 +20,7 @@ export default class CardBlog extends Component {
         const {title,uri,url} = this.props
         return (
             <TouchableOpacity 
-            onPress={()=>{Actions.push("blogReader",{uri:url})}}
+            onPress={()=>{Actions.blogReader({uri:url,title:"Bài Đọc Chi Tiết"})}}
             style={{justifyContent:"center",alignItems:"center",width:windowWidth*0.5,height:windowHeight*0.3,marginLeft:15,backgroundColor:"#eeeff2",borderRadius:10,paddingBottom:15,paddingTop:15}}>
                 <Image 
                 source={{

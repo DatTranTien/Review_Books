@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, View, TextInput, Dimensions, FlatList, ImageBackground, Image, TouchableOpacity, ScrollView, Linking } from 'react-native'
 import { Actions } from 'react-native-router-flux';
-import { fakeBlog } from '../../Api/FakeBlog';
+import database from '@react-native-firebase/database';
 import CardBlog from './CardBlog';
 
 const windowWidth = Dimensions.get('window').width;
@@ -13,122 +13,93 @@ export default class ShowAllTopic extends Component {
         super(props)
 
         this.state = {
-            data: []
+            dataBlog: []
         }
     }
 
 
     componentDidMount() {
-        this.setState({ data: this.props.item })
-        console.log("props.item=======>", this.props.item.dettail)
+        database()
+            .ref('/blog')
+            .once("value")
+            .then(snapshot => {
+                this.setState({dataBlog:snapshot.val()})
+            })
+           
     }
 
     render() {
-        const { item } = this.props
+        // console.log(this.state.data[0])
         return (
-            // <ScrollView contentInsetAdjustmentBehavior={"automatic"} style={{
-            //     backgroundColor: "#FFF",
-            //     // flex: 1,
-            //     // marginBottom:windowHeight*0.2
-            // }}>
-            <View style={{
-                paddingBottom: windowHeight * 0.16
+            <ScrollView contentInsetAdjustmentBehavior={"automatic"}
+            showsVerticalScrollIndicator={false}
+            style={{
+                backgroundColor: "#FFF",
+                paddingTop:24,
+                marginBottom:windowHeight*0.15
+                // flex: 1,
+                // marginBottom:windowHeight*0.2
             }}>
-                <View style={{
-                    flexDirection: "row",
-                    justifyContent: "flex-end",
-                    width: "90%",
-                    alignItems: "flex-end"
-                }}>
-                    {/* <Text style={{
-                                        fontWeight: "500",
-                                        fontSize: 16,
-                                        color: "#1f1f39"
-                                    }}>{item.topicAbout}</Text> */}
-                    <TouchableOpacity
-                        onPress={() => {
-                            Linking.openURL(this.state.data.urlWeb)
-                        }
-                        }
-                    >
+                
+                    {this.state.dataBlog.map((item, index) => (
+               <View style={{
+                paddingBottom: windowHeight * 0.05,
+                width: windowWidth,
+                justifyContent:"center",
+            }}>
+                <View style={{width:"100%",justifyContent:"center",alignItems:"center"}}>
+                    <View style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        width: "95%"
+                    }}>
                         <Text style={{
-                            fontWeight: "500",
-                            fontSize: 16,
-                            color: "#3d5cff",
-                            textDecorationLine: "underline"
-                        }}>Xem trên web</Text>
-                    </TouchableOpacity>
-                </View>
-                <FlatList
-                    style={{
-                        width: "100%",
-                    }}
-                    // horizontal
-                    // showsHorizontalScrollIndicator={true}
-                    data={this.state.data.detail}
-                    renderItem={({ item }, index) => (
-                        <View key={index}>
-                            <View style={{
-                                justifyContent: "center",
-                                alignItems: "center",
-                                marginTop: 15
-                                //   marginLeft:-windowWidth*0.05
-                                // paddingBottom: windowHeight * 0.3,
-                                // flexDirection:"row"
-                            }}>
-
-                                {/* {item.map((el, index) => {
-                                        return ( */}
-                                <CardBlog title={item.title} uri={item.uri} time={item.time} content={item.content} />
-                                {/* ) */}
-                                {/* })} */}
-
-                                {/* <TouchableOpacity
-                                onPress={()=>}
-                                style={{
-                                    // with: windowWidth*0.05,
-                                    // height:windowHeight*0.05,
-                                    backgroundColor: "#bbb",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    padding: 10,
-                                    marginTop: 20,
-                                    borderRadius: 10
-                                }}>
-                                    <Text style={{
-                                        fontSize: 16,
-                                        fontWeight: "500",
-                                        color: "#fff"
+                                            fontWeight: "500",
+                                            fontSize: 20,
+                                            color: "#1f1f39"
+                                        }}>{item.topicAbout}</Text>
+                        <TouchableOpacity
+                            onPress={() => {
+                                Actions.blogReader({uri:item.urlWeb,title:item.topicAbout})
+                                // Linking.openURL(item.urlWeb)
+                            }
+                            }
+                        >
+                            <Text style={{
+                                fontWeight: "500",
+                                fontSize: 18,
+                                color: "#3d5cff",
+                                textDecorationLine: "underline"
+                            }}>Xem trên web</Text>
+                        </TouchableOpacity>
+                    </View>
+                    </View>
+                    <FlatList
+                        style={{
+                            width: "100%",
+                        }}
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        data={item.detail}
+                        renderItem={(el , i) => {
+                            return (
+                                <View key={i}>
+                                    <View style={{
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        marginTop: 15
                                     }}>
-                                        Xem tất cả
-                                    </Text>
-                                </TouchableOpacity> */}
-
-                                {/* <FlatList
-                                    style={{
-                                        width: "100%",
-                                    }}
-                                    horizontal
-                                    showsHorizontalScrollIndicator={true}
-                                    data={item.detail}
-                                    renderItem={(el) => (
-                                        <CardBlog title={el.title} uri={el.uri} time={el.time} content={el.content} />
-                                    )}
-                                    keyExtractor={item => item.id}
-                                /> */}
-                            </View>
-
-                        </View>
-                    )}
-                    keyExtractor={item => item.id}
-                />
-                {/* <View
-                    style={{
-                        height: "40%"
-                    }}
-                /> */}
-            </View>
-            // {/* </ScrollView> */}
+                                        <CardBlog title={el.item.title} uri={el.item.uri} time={el.item.time} url={el.item.url} content={el.item.content} />
+                                    </View>
+                                </View>
+                            )
+                        }}
+                        keyExtractor={item => item.id}
+                    />
+                    </View>
+                    ))
+                }
+            </ScrollView>
         )
     }
 }
