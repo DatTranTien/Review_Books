@@ -8,6 +8,7 @@ import auth from '@react-native-firebase/auth';
 import 'react-native-gesture-handler'
 import SplashScreen from 'react-native-splash-screen'
 import { Platform, StyleSheet, Text, ScrollView } from 'react-native';
+import { notificationListiner, requestUserPermission } from './NoticeService';
 
 function App() {
   const store = configureStore()
@@ -28,7 +29,8 @@ function App() {
   
 
   useEffect(async() => {
-    
+    requestUserPermission()
+    notificationListiner()
       const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
       if (Platform.OS == "ios" || Platform.OS == "macos") {
     setTimeout(async() => {

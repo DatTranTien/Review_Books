@@ -120,7 +120,7 @@ componentDidMount(){
                     }} />
 
 
-                    {this.state.LogGG ? null :
+                    {/* {this.state.LogGG ? null :
                         <TouchableOpacity
                             onPress={() => {
                                 Actions.push("inputPhone")
@@ -141,8 +141,8 @@ componentDidMount(){
                             >Đổi mật khẩu</Text>
                             <Image source={require('../../assets/Profile/iconRight.png')} style={{ width: windowWidth * 0.05, height: windowHeight * 0.04 }} />
                         </TouchableOpacity>
-                    }
-                    {this.state.LogGG?null:
+                    } */}
+                    {/* {this.state.LogGG?null:
                     <View style={{
                         borderColor: "#999",
                         borderWidth: 1,
@@ -150,7 +150,7 @@ componentDidMount(){
                         opacity: 0.2,
                         marginTop: 10
                     }} />
-                    }
+                    } */}
                     
 
                     <TouchableOpacity
