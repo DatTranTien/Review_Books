@@ -8,6 +8,9 @@ import {
     GoogleSigninButton,
     statusCodes,
 } from '@react-native-google-signin/google-signin';
+import NativeAdView from "react-native-admob-native-ads";
+import MyAd from '../Ads/MyAd';
+
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -19,7 +22,7 @@ export default class Profile extends Component {
 
         this.state = {
             userInfo: "",
-            userInfoEmail:{},
+            userInfoEmail: {},
             LogGG: false
         }
     }
@@ -42,9 +45,9 @@ export default class Profile extends Component {
         }
     };
 
-componentDidMount(){
-    this.getCurrentUserInfo()
-}
+    componentDidMount() {
+        this.getCurrentUserInfo()
+    }
 
     signOutGoogle = async () => {
         try {
@@ -62,7 +65,8 @@ componentDidMount(){
                 <View style={{
                     justifyContent: "center",
                     alignItems: "center",
-                    flex: 1
+                    flex: 1,
+                    backgroundColor:"#fff"
                 }}>
                     <View style={{
                         width: windowWidth * 0.9,
@@ -151,17 +155,17 @@ componentDidMount(){
                         marginTop: 10
                     }} />
                     } */}
-                    
+
 
                     <TouchableOpacity
-                    onPress={()=>Actions.help()}
-                    style={{
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        width: "90%",
-                        marginTop: windowHeight * 0.05
-                    }}>
+                        onPress={() => Actions.help()}
+                        style={{
+                            flexDirection: "row",
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                            width: "90%",
+                            marginTop: windowHeight * 0.05
+                        }}>
                         <Text style={{
                             fontSize: 16,
                             fontWeight: "500",
@@ -176,6 +180,7 @@ componentDidMount(){
                         opacity: 0.2,
                         marginTop: 10
                     }} />
+                    <MyAd/>
                     {/* <TouchableOpacity
                         onPress={() => this.getCurrentUserInfo()}
                         style={{
@@ -192,8 +197,9 @@ componentDidMount(){
                         }}>Đánh giá app</Text>
                         <Image source={require('../../assets/Profile/iconRight.png')} style={{ width: windowWidth * 0.05, height: windowHeight * 0.04 }} />
                     </TouchableOpacity> */}
-                  
+
                 </View>
+
             </ScrollView >
         )
     }

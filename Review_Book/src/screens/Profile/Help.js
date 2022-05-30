@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, View, Image, Dimensions, TouchableOpacity, TextInput, Alert, ScrollVieư, Linking, Platform } from 'react-native'
 import { Actions } from 'react-native-router-flux';
+import MyAd from '../Ads/MyAd';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -33,7 +34,8 @@ export default class Help extends Component {
         return (
             <View style={{
                 justifyContent: "center",
-                alignItems: "center"
+                alignItems: "center",
+                backgroundColor:"#fff"
             }}>
                 <View style={{
                     width: "90%",
@@ -48,7 +50,7 @@ export default class Help extends Component {
                             color: "#1f1f39"
                         }}>Hỗ Trợ</Text>
                     </View>
-                    <TouchableOpacity
+                    {/* <TouchableOpacity
                         onPress={() => this.dialCall()}
                         style={{
                             flexDirection: "row",
@@ -68,12 +70,12 @@ export default class Help extends Component {
                             fontWeight: "500"
                         }}>0397475386</Text>
                         <Image source={require('../../assets/Profile/iconRight.png')} style={{ width: windowWidth * 0.05, height: windowHeight * 0.04 }} />
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <TouchableOpacity
                         onPress={() => {
                             const subject = "Phản hồi về app ";
                             const message = "Thân gửi admin,...";
-                            Linking.openURL(`mailto:phamd6447@gmail.com?subject=${subject}&body=${message}`)
+                            Linking.openURL(`mailto:trangauhn@gmail.com?subject=${subject}&body=${message}`)
                         }}
                         style={{
                             flexDirection: "row",
@@ -89,7 +91,7 @@ export default class Help extends Component {
                             fontSize: 18,
                             color: "#999",
                             fontWeight: "500"
-                        }}>phamd6447@gmail.com</Text>
+                        }}>trangauhn@gmail.com</Text>
                         <Image source={require('../../assets/Profile/iconRight.png')} style={{ width: windowWidth * 0.05, height: windowHeight * 0.04 }} />
                     </TouchableOpacity>
                     {/* <View style={{
@@ -111,7 +113,7 @@ export default class Help extends Component {
                             color: "#999",
                             fontWeight: "500"
                         }}>
-                            Nếu có thắc mắc hãy liên hệ trực tiếp qua số điện thoại hoặc email! chúng tôi sẽ giải quyết sớm nhất có thể!
+                            Nếu có thắc mắc hãy liên hệ trực tiếp qua email! chúng tôi sẽ giải quyết sớm nhất có thể!
                         </Text>
                         {/* <TouchableOpacity>
                             <Text style={{
@@ -128,6 +130,8 @@ export default class Help extends Component {
                         opacity: 0.2,
                         marginTop: 20
                     }} />
+                    
+                    <MyAd/>
                 </View>
             </View>
         )
